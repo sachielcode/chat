@@ -8,14 +8,17 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(router);
 
 router.get('/message', function (req, res) {
-  console.log(req.query)
-  res.send('Lista de mensajes')
+  console.log(req.headers);
+  res.header({
+    "custom-header": "Nuestro valor personalizado"
+  })
+  res.send('Lista de mensajes');
 });
 
 router.post('/message', function (req, res) {
-  console.log(req.query)
-  console.log(req.body)
-  res.send('Mensaje '+ req.body.text + ' añadido correctamente')
+  console.log(req.query);
+  console.log(req.body);
+  res.send('Mensaje '+ req.body.text + ' añadido correctamente');
 });
 
 // app.use('/', function(req, res){
