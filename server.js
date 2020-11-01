@@ -18,7 +18,9 @@ router.get('/message', function (req, res) {
 router.post('/message', function (req, res) {
   console.log(req.query);
   console.log(req.body);
-  res.send('Mensaje '+ req.body.text + ' añadido correctamente');
+  //res.send('Mensaje '+ req.body.text + ' añadido correctamente'); // Respuesta plana
+  //res.status(201).send(); // Respuesta vacía
+  res.status(201).send([{ error: '', body: 'Creado correctamente'}]);
 });
 
 // app.use('/', function(req, res){
