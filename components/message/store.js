@@ -24,8 +24,12 @@ function addMessage(message) {
   myMessage.save();
 }
 
-async function getMessages() {
-  const messages = await Model.find();
+async function getMessages(filterUser) {
+  let filter = {};
+  if (filterUser) {
+    filter = { user: filterUser };
+  }
+  const messages = await Model.find(filter);
   return messages;
 }
 
@@ -34,7 +38,6 @@ async function updateText(id, message) {
     _id: id,
   });
   foundMessage.message = message;
-  console.log(foundMessage);
   const newMessage = await foundMessage.save();
   return newMessage;
 }
