@@ -7,6 +7,7 @@ function addMessage(user, message) {
       return reject('Los datos son incorrectos');
     }
     const fullMessage = {
+      chat,
       user,
       message,
       date: new Date(),
@@ -32,8 +33,25 @@ function updateMessage(id, message) {
   });
 }
 
+function deleteMessage(id) {
+  return new Promise((resolve, reject) => {
+    if (!id) {
+      return reject('Id inválido');
+    }
+    store
+      .delete(id)
+      .then(() => {
+        resolve();
+      })
+      .catch(e => {
+        reject(e);
+      });
+  });
+}
+
 module.exports = {
   addMessage,
   getMessages,
   updateMessage,
+  deleteMessage,
 };
